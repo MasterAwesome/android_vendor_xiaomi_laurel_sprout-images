@@ -1,4 +1,4 @@
-# laurel_sprout prebuilt images
+# android_vendor_xiaomi_laurel_sprout-images
 
 ## update vendor images
 ```bash
