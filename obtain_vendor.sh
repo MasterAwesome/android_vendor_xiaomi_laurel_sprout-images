@@ -46,6 +46,10 @@ CUSTOM_DEVICE_DESC := "$DESC"
 
 EOF
 
+echo "[*] Cleaning up!"
+rm images/*
+rm vendor.img
+rm vendor.img.gz
 
 echo "[*] Copying images"
 cp $IMAGES/abl.elf images/abl.img
