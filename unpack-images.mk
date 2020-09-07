@@ -1,4 +1,4 @@
-# Copyright (C) 2020 The PixelExperience Project
+# Copyright (C) 2020 Arvind Mukund<armu30@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BOARD_PREBUILT_VENDORIMAGE := vendor/xiaomi/laurel_sprout-images/vendor.img
+# Could've $(info ...) d it but the newlines really dont work great 
+SHELL_RESULT := $(shell vendor/xiaomi/laurel_sprout-images/unpack.sh)
 
-CUSTOM_DEVICE_FINGERPRINT := "Xiaomi/laurel_sprout_eea/laurel_sprout:10/QKQ1.190910.002/V11.0.6.0.QFQEUXM:user/release-keys"
-CUSTOM_DEVICE_DESC := "qssi-user 10 QKQ1.190910.002 V11.0.6.0.QFQEUXM"
 
