@@ -17,14 +17,19 @@ IMAGES="$1"
  
 FINGERPRINT="$(strings $IMAGES/vendor.img | grep "ro.vendor.build.fingerprint" | cut -d'=' -f2-)"
 DESC="$(strings $IMAGES/system.img | grep "ro.build.display.id=" | cut -d'=' -f2)"
-DEVICE_MAKEFILE="../../../device/xiaomi/laurel_sprout/lineage_laurel_sprout.mk"
+DEVICE="../../../device/xiaomi/laurel_sprout"
+DEVICE_MAKEFILE="lineage_laurel_sprout.mk"
 
 echo "Found fingerprint $FINGERPRINT"
 echo "Found qssi image $DESC"
 
 echo "[+] Updating device tree fingerprint and description"
+cd $DEVICE
 sed "s#BUILD_FINGERPRINT :=.*#BUILD_FINGERPRINT :=\ \"$FINGERPRINT\"#g" $DEVICE_MAKEFILE -i
 sed "s#PRIVATE_BUILD_DESC=.*#PRIVATE_BUILD_DESC=\"$DESC\" \\\#g" $DEVICE_MAKEFILE -i
+git add $DEVICE_MAKEFILE
+git commit -s -m "obtain_vendor.sh: $(date)"
+cd -
 echo "[-] Updated device tree at $DEVICE_MAKEFILE"
 
 cat << EOF > vendor-image.mk
