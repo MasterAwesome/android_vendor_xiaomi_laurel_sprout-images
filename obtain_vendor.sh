@@ -17,10 +17,15 @@ IMAGES="$1"
  
 FINGERPRINT="$(strings $IMAGES/vendor.img | grep "ro.vendor.build.fingerprint" | cut -d'=' -f2-)"
 DESC="$(strings $IMAGES/system.img | grep "ro.build.display.id=" | cut -d'=' -f2)"
+DEVICE_MAKEFILE="../../../device/xiaomi/laurel_sprout/lineage_laurel_sprout.mk"
 
 echo "Found fingerprint $FINGERPRINT"
 echo "Found qssi image $DESC"
 
+echo "[+] Updating device tree fingerprint and description"
+sed "s#BUILD_FINGERPRINT :=.*#BUILD_FINGERPRINT :=\ \"$FINGERPRINT\"#g" $DEVICE_MAKEFILE -i
+sed "s#PRIVATE_BUILD_DESC=.*#PRIVATE_BUILD_DESC=\"$DESC\" \\\#g" $DEVICE_MAKEFILE -i
+echo "[-] Updated device tree at $DEVICE_MAKEFILE"
 
 cat << EOF > vendor-image.mk
 # Copyright (C) 2020 The PixelExperience Project
@@ -36,8 +41,6 @@ cat << EOF > vendor-image.mk
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-SHELL_RESULT := \$(shell vendor/xiaomi/laurel_sprout-images/unpack.sh)
 
 BOARD_PREBUILT_VENDORIMAGE := vendor/xiaomi/laurel_sprout-images/vendor.img
 
@@ -74,4 +77,5 @@ echo "[*] Done copying radio images"
 echo "[*] Copying vendor.img"
 cp $IMAGES/vendor.img vendor.img
 echo "[!] All files copied, run split.py to make it GitHub compliant"
+
 
