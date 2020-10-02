@@ -28,6 +28,11 @@ cd $DEVICE
 sed "s#BUILD_FINGERPRINT :=.*#BUILD_FINGERPRINT :=\ \"$FINGERPRINT\"#g" $DEVICE_MAKEFILE -i
 sed "s#PRIVATE_BUILD_DESC=.*#PRIVATE_BUILD_DESC=\"$DESC\" \\\#g" $DEVICE_MAKEFILE -i
 git add $DEVICE_MAKEFILE
+
+echo "[+] Copying dtbo.img from $FINGERPRINT"
+cp $IMAGES/dtbo.img ./dtbo.img
+git add dtbo.img
+
 git commit -s -m "obtain_vendor.sh: $(date)"
 cd -
 echo "[-] Updated device tree at $DEVICE_MAKEFILE"
