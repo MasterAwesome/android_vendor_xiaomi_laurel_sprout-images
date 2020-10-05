@@ -17,6 +17,8 @@ IMAGES="$1"
  
 FINGERPRINT="$(strings $IMAGES/vendor.img | grep "ro.vendor.build.fingerprint" | cut -d'=' -f2-)"
 DESC="$(strings $IMAGES/system.img | grep "ro.build.display.id=" | cut -d'=' -f2)"
+DESC="$(echo "$DESC release-keys")"
+
 DEVICE="../../../device/xiaomi/laurel_sprout"
 DEVICE_MAKEFILE="lineage_laurel_sprout.mk"
 
