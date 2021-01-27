@@ -63,9 +63,9 @@ CUSTOM_DEVICE_DESC := "$DESC"
 EOF
 
 echo "[*] Cleaning up!"
-rm images/*
-rm vendor.img
-rm vendor.img.gz
+rm -f images/* 2> /dev/null
+rm -f vendor.img 2> /dev/null
+rm -f vendor.img.gz 2> /dev/null
 
 echo "[*] Copying images"
 cp $IMAGES/abl.elf images/abl.img
@@ -91,4 +91,9 @@ echo "[*] Copying vendor.img"
 cp $IMAGES/vendor.img vendor.img
 echo "[!] All files copied, run split.py to make it GitHub compliant"
 
-
+echo "[i] Calculating md5sums for all the images"
+rm -f md5sums.txt 2> /dev/null 
+for file in $(find . -name "*.img"); do
+    md5sum $file >> ./md5sums.txt
+done
+echo "[!] Updated md5sums!"

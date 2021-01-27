@@ -33,5 +33,12 @@ done
 
 gunzip ./vendor.img.gz
 
+echo "[*] Verifying image checksums"
+md5sum -c md5sums.txt
+RET=$?
+if [ $RET -ne 0 ]; then
+    echo -e "[!!!] FILE CORRUPTION DETECTED\nRedownload sources"
+    exit $RET
+fi
 
 
