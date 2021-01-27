@@ -13,7 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-IMAGES="$1"
+IMAGES="$(readlink -fe $1)"
+cd $(dirname $0) # We need to be in vendor!
  
 FINGERPRINT="$(strings $IMAGES/vendor.img | grep "ro.vendor.build.fingerprint" | cut -d'=' -f2-)"
 DESC="$(strings $IMAGES/system.img | grep "ro.build.display.id=" | cut -d'=' -f2)"
