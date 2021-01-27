@@ -13,25 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PREFIX="vendor/xiaomi/laurel_sprout-images"
-PARTS="$PREFIX/parts/"
+cd $(dirname $0) # This fixes path restriction
+PARTS="./parts/"
 
-if test -f "$PREFIX/vendor.img"; then
+if test -f "./vendor.img"; then
     echo "File exists; not regenerating..."
     exit 0
 fi
 
 for part in $(find $PARTS -name "vendor.img.gz.*" | sort); do
     echo "Concatinating $part"
-	cat $part >> $PREFIX/vendor.img.gz
+	cat $part >> ./vendor.img.gz
 done
 
-for compressed_image in $PREFIX/images/*.gz; do
+for compressed_image in ./images/*.gz; do
     echo "Decompressing $compressed_image"
     gunzip $compressed_image
 done
 
-gunzip $PREFIX/vendor.img.gz
+gunzip ./vendor.img.gz
 
 
 
