@@ -16,22 +16,26 @@
 cd $(dirname $0) # This fixes path restriction
 PARTS="./parts/"
 
+function decompress {
+	xz -d "$1"
+}
+
 if test -f "./vendor.img"; then
     echo "File exists; not regenerating..."
     exit 0
 fi
 
-for part in $(find $PARTS -name "vendor.img.gz.*" | sort); do
+for part in $(find $PARTS -name "vendor.img.xz.*" | sort); do
     echo "Concatinating $part"
-	cat $part >> ./vendor.img.gz
+	cat $part >> ./vendor.img.xz
 done
 
-for compressed_image in ./images/*.gz; do
+for compressed_image in ./images/*.xz; do
     echo "Decompressing $compressed_image"
-    gunzip $compressed_image
+    decompress "$compressed_image"
 done
 
-gunzip ./vendor.img.gz
+decompress "./vendor.img.xz"
 
 echo "[*] Verifying image checksums"
 md5sum -c md5sums.txt
