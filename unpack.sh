@@ -25,7 +25,7 @@ if test -f "./vendor.img"; then
     exit 0
 fi
 
-for part in $(find $PARTS -name "vendor.img.xz.*" | sort); do
+for part in $(find $PARTS -type f | sort); do
     echo "Concatinating $part"
 	cat $part >> ./vendor.img.xz
 done
