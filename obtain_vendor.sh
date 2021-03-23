@@ -26,19 +26,21 @@ DEVICE_MAKEFILE="lineage_laurel_sprout.mk"
 echo "Found fingerprint $FINGERPRINT"
 echo "Found qssi image $DESC"
 
-echo "[+] Updating device tree fingerprint and description"
-cd $DEVICE
-sed "s#BUILD_FINGERPRINT :=.*#BUILD_FINGERPRINT :=\ \"$FINGERPRINT\"#g" $DEVICE_MAKEFILE -i
-sed "s#PRIVATE_BUILD_DESC=.*#PRIVATE_BUILD_DESC=\"$DESC\" \\\#g" $DEVICE_MAKEFILE -i
-git add $DEVICE_MAKEFILE
+if [ "$*" != *--only_vendor* ]; then
+	echo "[+] Updating device tree fingerprint and description"
+	cd $DEVICE
+	sed "s#BUILD_FINGERPRINT :=.*#BUILD_FINGERPRINT :=\ \"$FINGERPRINT\"#g" $DEVICE_MAKEFILE -i
+	sed "s#PRIVATE_BUILD_DESC=.*#PRIVATE_BUILD_DESC=\"$DESC\" \\\#g" $DEVICE_MAKEFILE -i
+	git add $DEVICE_MAKEFILE
 
-echo "[+] Copying dtbo.img from $FINGERPRINT"
-cp $IMAGES/dtbo.img ./dtbo.img
-git add dtbo.img
+	echo "[+] Copying dtbo.img from $FINGERPRINT"
+	cp $IMAGES/dtbo.img ./dtbo.img
+	git add dtbo.img
 
-git commit -s -m "obtain_vendor.sh: $(date)"
-cd -
-echo "[-] Updated device tree at $DEVICE_MAKEFILE"
+	git commit -s -m "obtain_vendor.sh: $(date)"
+	cd -
+	echo "[-] Updated device tree at $DEVICE_MAKEFILE"
+fi
 
 cat << EOF > vendor-image.mk
 # Copyright (C) 2020 The PixelExperience Project
