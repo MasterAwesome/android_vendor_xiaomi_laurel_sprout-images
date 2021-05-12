@@ -87,6 +87,9 @@ cp $IMAGES/tz.mbn images/tz.img
 cp $IMAGES/uefi_sec.mbn images/uefisecapp.img
 cp $IMAGES/xbl_config.elf images/xbl_config.img
 cp $IMAGES/xbl.elf images/xbl.img
+# The following images aren't used but can be used to update fw
+cp $IMAGES/logfs_ufs_8mb.bin images/logfs.img
+cp $IMAGES/apdp.mbn images/apdp.img
 echo "[*] Done copying radio images"
 
 echo "[*] Copying vendor.img"
