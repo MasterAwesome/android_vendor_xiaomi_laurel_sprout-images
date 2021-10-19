@@ -21,7 +21,7 @@ DESC="$(strings $IMAGES/system.img | grep "ro.build.display.id=" | cut -d'=' -f2
 DESC="$(echo "$DESC release-keys")"
 
 DEVICE="../../../device/xiaomi/laurel_sprout"
-DEVICE_MAKEFILE="lineage_laurel_sprout.mk"
+DEVICE_MAKEFILE="*_laurel_sprout.mk"
 
 echo "Found fingerprint $FINGERPRINT"
 echo "Found qssi image $DESC"
