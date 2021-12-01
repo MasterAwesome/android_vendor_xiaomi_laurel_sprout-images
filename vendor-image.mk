@@ -14,6 +14,6 @@
 
 BOARD_PREBUILT_VENDORIMAGE := vendor/xiaomi/laurel_sprout-images/vendor.img
 
-CUSTOM_DEVICE_FINGERPRINT := "Xiaomi/laurel_sprout/laurel_sprout:11/RKQ1.200903.002/V12.0.15.0.RFQMIXM:user/release-keys"
-CUSTOM_DEVICE_DESC := "qssi-user 11 RKQ1.200903.002 V12.0.15.0.RFQMIXM release-keys"
+CUSTOM_DEVICE_FINGERPRINT := "Xiaomi/laurel_sprout/laurel_sprout:11/RKQ1.200903.002/V12.0.16.0.RFQMIXM:user/release-keys"
+CUSTOM_DEVICE_DESC := "qssi-user 11 RKQ1.200903.002 V12.0.16.0.RFQMIXM release-keys"
 
