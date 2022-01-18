@@ -1,7 +1,7 @@
 e41b4275c2f093ea7d760c37c784cc2f  ./images/dsp.img
 076c85b8000046c662532e5e9e762362  ./images/cmnlib64.img
 3ae970221d1c4a9c7d38df769bbc9919  ./images/storsec.img
-51d285093043190c9153ef9746bcc4d2  ./images/abl.img
+85f6cae755914495a5d5eae47a37c96a  ./images/abl.img
 50a7dab46720c9d0530f989c1a3bccc2  ./images/devcfg.img
 53ee21d662d077c4dfd422a880a397d0  ./images/apdp.img
 8183726eee55cb0f88076a784abf2906  ./images/xbl.img
@@ -17,4 +17,4 @@ c040a889d66a4f120f502f89b551f42b  ./images/logfs.img
 06fc8b167c408852f082871a69689e07  ./images/uefisecapp.img
 70a97c5ed07c437fbcaade13aff993ad  ./images/modem.img
 5c2863d5968eade790a202ee6d93b280  ./images/xbl_config.img
-fbb244ab75a1ea5a9f902aab4f218e9c  ./vendor.img
+5f1931f68d3ce63d8ef4722a7707d2a0  ./vendor.img
